@@ -94,7 +94,4 @@ Escolha uma decisão limitada e preencha as cinco linhas da seção 1. Se quiser
 
 ## Feedback
 
-Se testar o worksheet, [compartilhe feedback em português ou inglês](https://docs.google.com/forms/d/e/1FAIpQLSe5JA0JmGdVtndaJYbuJlSLM_uQeqS7StKJ3X_JHi68oz6q1A/viewform?usp=publish-editor). Leva cerca de 2 minutos; o formulário não coleta e-mail automaticamente. Não inclua segredos, dados de clientes ou logs privados.
-
-
-
+Quer ajudar a melhorar o worksheet? Responda ao [tópico público de feedback no GitHub](https://github.com/luancaldeira/jev-decision-fit-worksheet/issues/1) com um exemplo de alto nível, sem dados privados. Se preferir, use o [formulário opcional](https://docs.google.com/forms/d/e/1FAIpQLSe5JA0JmGdVtndaJYbuJlSLM_uQeqS7StKJ3X_JHi68oz6q1A/viewform?usp=publish-editor); leva cerca de 2 minutos e não coleta e-mail automaticamente. Não inclua segredos, dados de clientes ou logs privados.
