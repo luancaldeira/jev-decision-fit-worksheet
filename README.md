@@ -90,6 +90,7 @@ Este worksheet não prova que Jev é mais rápido, barato, preciso ou seguro par
 
 ## Próximo passo
 
-Escolha uma decisão limitada e preencha as cinco linhas da seção 1. Se quiser mais exemplos TypeScript/Python, receitas de fallback, estudos de caso e um harness offline, veja o [Jev Operator Kit](https://jevtools.gumroad.com/l/jev-operator-kit). Disclosure: a amostra e o kit são do mesmo autor; o kit é pago.
+Escolha uma decisão limitada e preencha as cinco linhas da seção 1. Se quiser mais exemplos TypeScript/Python, receitas de fallback, estudos de caso e um harness offline, veja o [Jev Operator Kit](https://jevtools.gumroad.com/l/jev-operator-kit?utm_source=github&utm_medium=organic-social&utm_campaign=launch30d-sep2026&utm_content=product-page). Disclosure: a amostra e o kit são do mesmo autor; o kit é pago.
+
 
 
