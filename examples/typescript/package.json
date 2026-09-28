@@ -1,0 +1,14 @@
+{
+  "name": "jev-bounded-routing-sample",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/route-ticket.ts"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "0.6.0"
+  },
+  "devDependencies": {
+    "tsx": "4.20.0"
+  }
+}

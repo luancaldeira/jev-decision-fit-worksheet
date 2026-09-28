@@ -4,6 +4,8 @@
 
 **English:** A free 10-minute worksheet for choosing between deterministic code, bounded semantic decisions, and generative models. This public preview is in Brazilian Portuguese.
 
+**Runnable English code sample:** [TypeScript support-ticket router](examples/typescript/README.md). It uses synthetic input, validates the choice against a local allowlist, and sends uncertain outcomes to human review. It prints a recommendation and performs no action.
+
 Um worksheet curto para decidir se uma parte de um fluxo de agente precisa de código, uma decisão semântica limitada ou um modelo generativo. Adaptado do Jev Operator Kit v0.1. Não requer Jev para usar o checklist.
 
 ## 1. Descreva uma decisão real
