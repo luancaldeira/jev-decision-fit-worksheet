@@ -1,99 +1,24 @@
-# A decisão limitada antes do modelo
+# Does this agent decision need a model?
 
-[Baixar worksheet em PDF (PT-BR)](jev-decision-fit-worksheet-pt.pdf)
+A free five-line worksheet for developers choosing between an exact code rule, a bounded semantic decision, and a generative model. No Jev account, email, or purchase is needed.
 
-**English:** A free 10-minute worksheet for choosing between deterministic code, bounded semantic decisions, and generative models. This public preview is in Brazilian Portuguese.
+**Start here:** [Read the English worksheet](worksheet-en.md) · [Fill in or print the English PDF](decision-fit-worksheet-en.pdf)
+**Português:** [Ler a versão em português](README-pt.md) · [Baixar PDF em português](jev-decision-fit-worksheet-pt.pdf)
 
-**Runnable English code sample:** [TypeScript support-ticket router](examples/typescript/README.md). It uses synthetic input, validates the choice against a local allowlist, and sends uncertain outcomes to human review. It prints a recommendation and performs no action.
+Want to inspect source before buying? Read the [real TypeScript support-ticket router](examples/typescript/src/route-ticket.ts), then see the [Jev Operator Kit at US$19 one-time](https://jevtools.gumroad.com/l/jev-operator-kit?utm_source=github&utm_medium=sample&utm_campaign=workshop-v02&utm_content=readme). The paid kit adds a 24-case offline workshop and error reports; live Jev access and provider charges are separate.
 
-Um worksheet curto para decidir se uma parte de um fluxo de agente precisa de código, uma decisão semântica limitada ou um modelo generativo. Adaptado do Jev Operator Kit v0.1. Não requer Jev para usar o checklist.
+## The decision this worksheet helps with
 
-## 1. Descreva uma decisão real
+A support ticket says, “I was charged twice after the app froze.” Is it billing or technical? If a trusted invoice field settles the route, keep the rule in code. If meaning remains ambiguous, test a bounded choice over `billing`, `technical`, `account`, and `review`. Your application still validates the answer, handles uncertainty, checks access, and decides what to execute.
 
-Preencha antes de escolher qualquer modelo:
+The worksheet asks you to name five things before adding a model call: input, allowed outputs, exact rules, the failure route, and final authority. Fill it out for one real decision. If you cannot name the allowed outputs or fallback, narrow the task first.
 
-- **Entrada que o sistema recebe:**
-- **Saídas permitidas (IDs estáveis):**
-- **Ação posterior à decisão:**
-- **Quem valida e executa essa ação:**
-- **O que ocorre com uma resposta desconhecida, ambígua ou indisponível:**
+Want a runnable illustration? The [TypeScript support-ticket router](examples/typescript/README.md) uses synthetic input, checks a local allowlist, and sends uncertain outcomes to human review. It prints a recommendation and performs no action.
 
-Se não conseguir listar as saídas ou definir o fallback, a tarefa ainda está ampla demais.
+## After the free worksheet
 
-## 2. Use a opção mais simples que resolve
+If you want a complete exercise after defining your decision, the [Jev Operator Kit](https://jevtools.gumroad.com/l/jev-operator-kit?utm_source=github&utm_medium=sample&utm_campaign=workshop-v02&utm_content=readme) adds 24 synthetic labeled tickets, scripted candidate answers, an exact-rule baseline, HTML/JSON error reports, and a template for adapting one workflow. Run that workshop with Python 3.10+ and no API key or package installation. The answers are scripted, not Jev predictions or a model benchmark.
 
-| Tipo de decisão | Comece com | Exemplo |
-|---|---|---|
-| Regra exata sobre dado confiável | Código determinístico | `amount > 500` exige revisão |
-| Julgamento semântico com opções finitas | Avalie um classificador/decisor limitado | Mensagem vai para uma de quatro filas |
-| Texto, síntese, explicação ou raciocínio aberto | Modelo generativo | Redigir resposta com contexto |
-| Ação de alto impacto | Política determinística + aprovação necessária | Autorizar pagamento ou exclusão |
+The US$19 one-time source-and-guide pack also includes TypeScript/Python Jev quickstarts, 16 recipes, three case studies, and a harness for your own cost and latency observations. Live Jev access and billing are separate; future updates are not promised. The free worksheet may be all you need. Both products are made by the same author.
 
-Uma chamada de decisão não é automaticamente melhor que uma condição simples. Compare com o caminho atual antes de substituir algo.
-
-## 3. Esboce o fluxo seguro
-
-```text
-entrada
-  ↓
-regras exatas / negações / permissões (código)
-  ↓
-opções limitadas descritas ao decisor
-  ↓
-resultado → validar enum/ID contra allowlist local
-  ↓
-fallback seguro em timeout, ID inválido ou incerteza
-  ↓
-política e autorização final (código)
-  ↓
-executar ou pedir revisão humana
-```
-
-### Exemplo de roteamento
-
-Um classificador propõe `billing`, `technical`, `account` ou `review`. A aplicação deve:
-
-1. Rejeitar qualquer ID fora dessas quatro opções.
-2. Encaminhar `review`, erro ou baixa confiança para uma fila controlada por uma pessoa.
-3. Aplicar verificações de acesso antes de consultar ou alterar dados da conta.
-4. Registrar a categoria, a confiança quando disponível, a latência e o uso de fallback — sem guardar conteúdo privado desnecessário.
-
-O classificador sugere a fila; a aplicação continua responsável por dados, acesso e execução.
-
-## 4. Compare com o baseline
-
-Teste o mesmo conjunto de casos no sistema atual e na alternativa. Rotule a resposta esperada antes de olhar os resultados. Uma linha por caso pode conter:
-
-```text
-case_id,expected_route,selected_route,correct,valid_output,latency_ms,fallback,cost_basis
-```
-
-Olhe pelo menos para:
-
-- **Correção de rota:** escolheu a opção esperada?
-- **Saída válida:** retornou uma opção permitida?
-- **Fallback:** quantos casos foram para revisão ou caminho antigo?
-- **Latência ponta a ponta:** inclua chamadas adicionais e retries.
-- **Custo total do fluxo:** inclua fallback, tokens/contexto e infraestrutura pertinente.
-- **Impacto de erro:** o que acontece quando escolhe a opção errada?
-
-Não generalize a partir de exemplos de demonstração. Use casos representativos, mantenha separado o conjunto usado para ajustar limiares e reavalie mudanças de dados, prompt, modelo ou SDK.
-
-## 5. Critério simples para seguir ou parar
-
-- **Seguir para teste controlado:** saídas são limitadas, validação/fallback estão implementados e existe baseline comparável.
-- **Manter código:** as regras exatas cobrem o caso de forma clara e confiável.
-- **Escalar para pessoa:** erro é caro, input é ambíguo, serviço está indisponível ou confiança não foi validada.
-- **Parar a experiência:** resultado não melhora o fluxo ponta a ponta ou a operação extra não compensa.
-
-## Limites
-
-Este worksheet não prova que Jev é mais rápido, barato, preciso ou seguro para o seu caso. Jev é uma opção a avaliar para decisões semânticas limitadas. Acesso ao Jev e cobrança do fornecedor são separados. Verifique SDKs e termos atuais antes de implementar.
-
-## Próximo passo
-
-Escolha uma decisão limitada e preencha as cinco linhas da seção 1. Se quiser mais exemplos TypeScript/Python, receitas de fallback, estudos de caso e um harness offline, veja o [Jev Operator Kit](https://jevtools.gumroad.com/l/jev-operator-kit?utm_source=github&utm_medium=organic-social&utm_campaign=launch30d-sep2026&utm_content=product-page). Disclosure: a amostra e o kit são do mesmo autor; o kit é pago.
-
-## Feedback
-
-Quer ajudar a melhorar o worksheet? Converse no [tópico de feedback do GitHub](https://github.com/luancaldeira/jev-decision-fit-worksheet/discussions/2) ou responda ao [issue público de feedback](https://github.com/luancaldeira/jev-decision-fit-worksheet/issues/1), sempre com exemplos de alto nível e sem dados privados. Se preferir, use o [formulário opcional](https://docs.google.com/forms/d/e/1FAIpQLSe5JA0JmGdVtndaJYbuJlSLM_uQeqS7StKJ3X_JHi68oz6q1A/viewform?usp=publish-editor); leva cerca de 2 minutos e não coleta e-mail automaticamente. Não inclua segredos, dados de clientes ou logs privados.
+This repository and its examples are educational. They do not authorize actions, provide Jev access, or prove a model improves your workflow.
